@@ -1,0 +1,139 @@
+@import "tailwindcss" source("../");
+
+@theme {
+  --color-fire-dark: #7c2d12;
+  --color-fire-mid: #ea580c;
+  --color-fire-bright: #fb923c;
+  --color-coal: #0f0a06;
+  --color-coal-mid: #1c1209;
+  --color-coal-light: #2d1f0e;
+  --color-ash: #a8a29e;
+  --color-cream: #fef3c7;
+
+  --shadow-fire: 0 0 32px 0 rgba(234, 88, 12, 0.35), 0 4px 16px 0 rgba(0,0,0,0.5);
+  --shadow-fire-sm: 0 0 16px 0 rgba(234, 88, 12, 0.2), 0 2px 8px 0 rgba(0,0,0,0.4);
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+
+  --animate-fade-up: fade-up 0.7s ease both;
+  --animate-wiggle: wiggle 0.5s ease-in-out;
+  --animate-ember: ember-rise 3s ease-in infinite;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25%       { transform: rotate(-15deg); }
+  75%       { transform: rotate(15deg); }
+}
+
+@keyframes ember-rise {
+  0%   { opacity: 0; transform: translateY(0) scale(0.6); }
+  20%  { opacity: 0.8; }
+  80%  { opacity: 0.3; }
+  100% { opacity: 0; transform: translateY(-120px) translateX(20px) scale(0.2); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--color-coal);
+  color: var(--color-cream);
+}
+
+code {
+  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Grill lines pattern */
+.grill-pattern {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(251, 146, 60, 0.15) 0px,
+      rgba(251, 146, 60, 0.15) 2px,
+      transparent 2px,
+      transparent 28px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(251, 146, 60, 0.15) 0px,
+      rgba(251, 146, 60, 0.15) 2px,
+      transparent 2px,
+      transparent 28px
+    );
+}
+
+/* Floating ember particle */
+.ember {
+  position: absolute;
+  bottom: 0;
+  left: var(--x, 50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fb923c 0%, #ea580c 60%, transparent 100%);
+  animation: ember-rise 3s ease-in infinite;
+  animation-delay: var(--delay, 0s);
+  pointer-events: none;
+}
+
+/* Animate utilities */
+.animate-fade-up {
+  animation: var(--animate-fade-up);
+  animation-fill-mode: both;
+}
+
+.animate-wiggle {
+  animation: var(--animate-wiggle);
+}
+
+/* Shadow utilities */
+.shadow-fire {
+  box-shadow: var(--shadow-fire);
+}
+
+.shadow-fire-sm {
+  box-shadow: var(--shadow-fire-sm);
+}
+
+/* Scrollbar styling for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-coal);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-coal-light);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-fire-dark);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* select element styling */
+select option {
+  background: var(--color-coal-mid);
+  color: var(--color-cream);
+}
